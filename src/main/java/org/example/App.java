@@ -20,6 +20,7 @@ public class App {
         int y;
         int answer;
         int ansCount = 0;
+        int operator;
         int difficulty = chooseDifficulty();
         boolean loop = true;
 
@@ -27,8 +28,36 @@ public class App {
             while(loop){
                 x = random.nextInt(difficulty);
                 y = random.nextInt(difficulty);
-                answer = x + y;
-                System.out.println("Solve for: " + x + " + " + y);
+
+                if(difficulty == 20){
+                    answer = x + y;
+                    System.out.println("Solve for: " + x + " + " + y);
+                }else if(difficulty == 50) {
+                    operator = random.nextInt(2);
+                    if(operator == 0){
+                        answer = x + y;
+                        System.out.println("Solve for: " + x + " + " + y);
+                    }else{
+                        answer = x - y;
+                        System.out.println("Solve for: " + x + " - " + y);
+                    }
+                }else{
+                    operator = random.nextInt(3);
+                    if(operator == 0){
+                        answer = x + y;
+                        System.out.println("Solve for: " + x + " + " + y);
+                    }else if(operator == 1){
+                        answer = x - y;
+                        System.out.println("Solve for: " + x + " - " + y);
+                    }else if(operator == 2){
+                        answer = x * y;
+                        System.out.println("Solve for: " + x + " * " + y);
+                    }else{
+                        answer = x / y;
+                        System.out.println("Solve for: " + x + " / " + y);
+                    }
+
+                }
                 int input = keyboard.nextInt();
 
                 if(input == answer){
