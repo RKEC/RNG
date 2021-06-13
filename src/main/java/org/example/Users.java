@@ -47,11 +47,10 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", score=" + score +
-                ", difficulty='" + difficulty + '\'' +
-                '}';
+        return
+                name + " - " +
+                score + " - " +
+                difficulty
+                ;
     }
 }

@@ -178,6 +178,7 @@ public class Database {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        int count = 1;
 
         List<Users> users = new ArrayList<>();
 
@@ -185,7 +186,7 @@ public class Database {
         {
             con = this.getConnection();
 
-            String query = "SELECT * FROM USERS ORDER BY DESC";
+            String query = "SELECT * FROM USERS ORDER BY USERS.SCORE DESC";
             ps = con.prepareStatement(query);
 
             rs = ps.executeQuery();
@@ -196,8 +197,12 @@ public class Database {
                 int score = rs.getInt("score");
                 String difficulty = rs.getString("diff");
 
-                users.add(new Users(id, name, score, difficulty));
+                Users u = new Users(id, name, score, difficulty);
+                users.add(u);
+                System.out.println(Colours.PURPLE + count +". " + u + Colours.RESET);
+                count++;
             }
+
         } catch (SQLException e)
         {
             throw new Exception("findAllUsers() " + e.getMessage());
@@ -222,7 +227,7 @@ public class Database {
                 throw new Exception("findAllUsers() " + e.getMessage());
             }
         }
-        System.out.println(users);
+
     }
 
     public void freeConnection(Connection con)

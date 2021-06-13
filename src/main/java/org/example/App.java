@@ -10,6 +10,15 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) throws Exception {
+        start();
+    }
+
+    private static void start() {
+        menu();
+    }
+
+
+    public static void play() throws Exception {
 
         Random random = new Random();
         Scanner keyboard = new Scanner(System.in);
@@ -126,10 +135,54 @@ public class App {
         return diff;
     }
 
+    public static void menu(){
+        Scanner keyboard = new Scanner(System.in);
+        Database database = new Database();
+
+        Menu menu;
+        boolean loop = true;
+        int option1;
+
+        while (loop) {
+            printMenuOptions();
+            try {
+                String input = keyboard.nextLine();
+                if (input.isEmpty() || input.length() > 1) {
+                    throw new IllegalArgumentException();
+                } else {
+                    option1 = Integer.parseInt(input);
+                }
+                menu = Menu.values()[option1];
+                switch (menu) {
+                    case QUIT:
+                        System.exit(0);
+                        loop = false;
+                        break;
+                    case PLAY:
+                        play();
+                        loop = false;
+                        break;
+                    case LEADERBOARDS:
+                        database.leaderboards();
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println(Colours.RED + "Please enter a valid option");
+            }
+        }
+    }
+
     private static void printDifficultyOptions() {
         System.out.println("\n Options to select");
         for (int i = 0; i < Difficulty.values().length; i++) {
             System.out.println("\t" + Colours.BLUE + i + ". " + Difficulty.values()[i].toString() + Colours.RESET);
+        }
+        System.out.println("Enter a number to select option (enter 0 to quit):>");
+    }
+    private static void printMenuOptions() {
+        System.out.println("\n Options to select");
+        for (int i = 0; i < Menu.values().length; i++) {
+            System.out.println("\t" + Colours.BLUE + i + ". " + Menu.values()[i].toString() + Colours.RESET);
         }
         System.out.println("Enter a number to select option (enter 0 to quit):>");
     }
