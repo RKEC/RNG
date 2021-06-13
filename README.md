@@ -2,7 +2,7 @@
 #### By Richard Collins
 
 ## About the project
-The application is a maths game made with java. There are 3 different difficulties ranigng from Easy, Medium and Hard. There is a leaderboard system to the game where you can 
+This application is a maths game made with java. There are 3 different difficulties ranging from Easy, Medium and Hard. There is a leaderboard system to the game where you can 
 see the top scores. This is made with a MySQL database which the game communicates with over a xampp server.
 
 ## Additional information
