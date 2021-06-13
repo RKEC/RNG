@@ -18,19 +18,7 @@ public class Database {
 
             Statement statement = conn.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("select * from users");
-
-            while (resultSet.next())
-            {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                int score = resultSet.getInt("score");
-                System.out.print(id + ", ");
-                System.out.print(name + ", ");
-                System.out.print(score + ", ");
-            }
             conn.close();
-            System.out.println("\nDisconnected from database");
         }
         catch (SQLException ex)
         {
